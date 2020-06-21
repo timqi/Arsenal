@@ -1,0 +1,20 @@
+#!/bin/bash
+
+logv "install Xcode command line tools..."
+xcode-select --install
+
+logv "install brew..."
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+logv "install brew apps..."
+
+brew install tmux
+brew install mosh
+brew install v2ray-core
+
+brew cask google-chrome
+
+logv "Change the shell to zsh"
+ZSHPATH="$(which zsh)"
+[[ $(grep $ZSHPATH /etc/shells) == "" ]] && sudo sh -c "echo $ZSHPATH >> /etc/shells"
+chsh -s $ZSHPATH

@@ -1,0 +1,53 @@
+#!/bin/bash
+# install curl gcc
+
+function logv() {
+    printf "\x1B[32m$1\x1B[0m\n"
+}
+
+function OSTYPE() {
+    UNAME_FULL="`uname -a`"
+    case $UNAME_FULL in
+        *[dD]arwin* ) echo "macos";;
+        *[uU]buntu* ) echo "ubuntu";;
+		*Microsoft* ) echo "win";;
+        *) echo "unknown";;
+    esac
+}
+
+ARSENALDIR="$HOME/Arsenal"
+ARSENAL_SELF_BIN_DIR=$ARSENALDIR/bin/self
+mkdir -p $ARSENAL_SELF_BIN_DIR
+
+[[ ! -n $ARSENALTEMPDIR ]] && ARSENALTEMPDIR=$ARSENALDIR/tmp
+mkdir -p $ARSENALTEMPDIR
+logv "HOME: $HOME, TMP: $ARSENALTEMPDIR, ARSENAL: $ARSENALDIR\n"
+
+if [[ -n $1 ]] && [[ ! -d $ARSENALDIR/$1 ]]; then
+    echo "$1 module doesn't exist"
+elif [[ -n $1 ]]; then
+    extra=$ARSENALDIR/$1
+    INSTALL_SCRIPT="$extra/install.sh"
+    PLUGIN_SOURCE_DIR="$extra/source"
+    PLUGIN_DIR="$extra"
+    [[ -f $INSTALL_SCRIPT ]] \
+        && logv "Install plugin $extra ..." \
+    && . $INSTALL_SCRIPT
+else
+    for extra in $ARSENALDIR/*; do
+        INSTALL_SCRIPT="$extra/install.sh"
+        PLUGIN_SOURCE_DIR="$extra/source"
+        PLUGIN_DIR="$extra"
+        [[ -f $INSTALL_SCRIPT ]] \
+            && logv "Install plugin $extra ..." \
+        && . $INSTALL_SCRIPT
+    done
+fi
+
+logv "Clean up..."
+rm -rf $ARSENALTEMPDIR
+
+logv "source ~/.zshrc ..."
+. $HOME/.zshrc
+
+logv "DONE!"

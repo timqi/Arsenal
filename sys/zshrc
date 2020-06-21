@@ -1,0 +1,49 @@
+[ -z "$PS1" ] && return
+export ARSENALDIR="$HOME/Arsenal"
+
+. $ARSENALDIR/sys/base.zsh
+. $ARSENALDIR/sys/function.zsh
+
+# fzf
+. $ARSENALDIR/fzf/init.zsh
+
+# node
+. $ARSENALDIR/node/init.zsh
+
+# go
+. $ARSENALDIR/go/init.zsh
+
+# zsh-autosuggestions
+. $ARSENALDIR/zsh-autosuggestions/source/zsh-autosuggestions.zsh
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=253'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=1000
+
+# zsh-syntax-highlighting.zsh
+. $ARSENALDIR/zsh-syntax-highlighting/source/zsh-syntax-highlighting.zsh
+
+# z.lua
+export _ZL_ECHO=1
+eval "$(lua $ARSENALDIR/z/source/z.lua --init zsh enhanced once)"
+# . $ARSENALDIR/z/init.zsh
+
+# init PATH & platform profile
+if [[ $PATH != "*$ARSENALDIR*" ]]; then
+    # export PATH="$HOME/.pyenv/bin:$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/bin/node:$HOME/go/bin:$PATH"
+    export PATH="$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/bin/node:$HOME/go/bin:$PATH"
+fi
+
+# pyenv pyenv-virtualenv
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# Auto source ~/.platformrc
+[[ -f "$HOME/.platformrc" ]] && . "$HOME/.platformrc"
+
+# Auto open a default session using tmux in Linux environment
+# if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]] &&\
+	# command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    # # Set tab title to hostname of current
+    echo -ne "\033]0;`hostname`\007"
+    # tmux attach -t default &> /dev/null || tmux new -s default
+# fi
