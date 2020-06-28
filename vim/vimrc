@@ -117,8 +117,8 @@ let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_ctags_extra_args = ['--kinds-PHP=cdfit']
 let g:gutentags_ctags_extra_args += ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
-let g:gutentags_file_list_command = 'rg --ignore-file=.rgignore --files'
+" let g:gutentags_file_list_command = 'rg --ignore-file=.rgignore --files'
+let g:gutentags_file_list_command = 'find . -name "*"'
 let g:gutentags_ctags_exclude = ['*html', '*min.css', '*min.js', '*.json']
 let g:gutentags_auto_add_gtags_cscope = 0
 
@@ -131,7 +131,7 @@ if executable('gtags-cscope') && executable('gtags')
     let g:gutentags_modules += ['gtags_cscope']
 endif
 
-let s:vim_tags = expand('~/.cache/tags')
+let s:vim_tags = expand('~/.config/tags')
 let g:gutentags_cache_dir = s:vim_tags
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
@@ -164,10 +164,10 @@ let g:lightline = {
     \ }
 
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+let s:lf_cache = expand('~/.config/LfCache')
+let g:Lf_CacheDirectory = s:lf_cache
 let g:Lf_ShowDevIcons = 0
 let g:Lf_ShortcutF = '<c-p>'
-noremap <c-p> :Leaderf file<cr>
-" let g:Lf_WindowPosition = 'popup'
 let g:Lf_RootMarkers = ['.git', '.hg', '.svn']
 let g:Lf_WindowHeight = 6
 noremap <c-t> :LeaderfBufTag<cr>
@@ -176,16 +176,27 @@ noremap <c-r> :LeaderfHistoryCmd<cr>
 noremap <leader>o :<C-U>LeaderfRgRecall<CR>
 noremap <leader>s :<C-U><C-R>=printf("Leaderf rg --match-path -e ")<CR>
 noremap <leader>w :<C-U><C-R>=printf("Leaderf rg --match-path -e %s ", expand("<cword>"))<CR>
+let g:Lf_DefaultExternalTool = "rg"
+let g:Lf_UseVersionControlTool = 0
 let g:Lf_CommandMap = {'<c-k>': ['<c-p>'], '<c-j>': ['<c-n>']}
 let g:Lf_WildIgnore = {
     \ 'dir': ['.svn','.git','.hg'],
     \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
     \}
 let g:Lf_RgConfig = [
-    \ "--max-columns=150",
+    \ "--max-columns=200",
     \ ]
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+    \ "coc-tsserver",
+    \ "coc-python",
+    \ "coc-word",
+    \ "coc-tag",
+    \ "coc-snippets",
+    \ "coc-go",
+    \ ]
+
 set signcolumn=yes
 nmap <silent> g[ <Plug>(coc-diagnostic-prev)
 nmap <silent> g] <Plug>(coc-diagnostic-next)
@@ -210,17 +221,16 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
-inoremap <c-space> coc#refresh()
+" inoremap <c-space> coc#refresh()
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-
 " coc-snippets
 imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-n> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-n>'
-let g:coc_snippet_prev = '<c-p>'
+let g:coc_snippet_next = '<c-l>'
+let g:coc_snippet_prev = '<c-;>'
 imap <C-n> <Plug>(coc-snippets-expand-jump)
 
 
@@ -255,6 +265,6 @@ endif
 " 4 -> solid underscore
 " 5 -> blinking vertical bar
 " 6 -> solid vertical bar
-let &t_SI.="\e[5 q" "SI = INSERT mode
-let &t_SR.="\e[3 q" "SR = REPLACE mode
-let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
+" let &t_SI.="\e[5 q" "SI = INSERT mode
+" let &t_SR.="\e[3 q" "SR = REPLACE mode
+" let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)

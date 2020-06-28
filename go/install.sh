@@ -2,7 +2,7 @@
     && echo "No proxy dectected, skip install go." \
     && return
 
-VER="1.13.6"
+VER="1.14.4"
 
 if [[ `go version` == *$VER* ]]; then
    echo "go$VER already installed"

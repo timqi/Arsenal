@@ -1,4 +1,4 @@
-background_opacity: 1
+background_opacity: 0.9
 env:
   TERM: xterm-256color
 
@@ -6,20 +6,18 @@ window:
   startup_mode: Maximized
 
 font:
-  size: 18.0
+  size: 16.0
   normal:
-    family: JetBrains Mono
-    style: Regular
+    family: Fira Code
   bold:
-    family: JetBrains Mono
+    family: Fira Code
     style: Bold
   italic:
-    family: JetBrains Mono
+    family: Fira Code
     style: Italic
-
   offset:
     x: 0
-    y: 5
+    y: 2
 
 colors:
   primary:
