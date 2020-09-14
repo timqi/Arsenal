@@ -30,8 +30,16 @@
 	<false/>
 	<key>HideTabNumber</key>
 	<false/>
+	<key>Hotkey</key>
+	<true/>
+	<key>HotkeyChar</key>
+	<integer>96</integer>
+	<key>HotkeyCode</key>
+	<integer>50</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>HotkeyModifiers</key>
+	<integer>270592</integer>
 	<key>IRMemory</key>
 	<integer>1</integer>
 	<key>LoadPrefsFromCustomFolder</key>
@@ -84,14 +92,14 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>496 486 799 448 0 0 1792 1097 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>153 1701 1410 657 -452 1120 2560 1417 </string>
+	<string>0 334 1410 763 0 0 1792 1097 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
 			<key>ASCII Ligatures</key>
-			<true/>
+			<false/>
 			<key>Allow Title Setting</key>
 			<true/>
 			<key>Ambiguous Double Width</key>
@@ -745,7 +753,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Non-ASCII Ligatures</key>
-			<true/>
+			<false/>
 			<key>Normal Font</key>
 			<string>FiraCode-Regular 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
@@ -830,32 +838,29 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.11</string>
-	</array>
-	<key>NoSyncBFPRecents</key>
-	<array>
-		<string>Monaco</string>
-		<string>Fira Code</string>
+		<string>3.3.12</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{-452, 1120}, {2560, 1440}}</string>
+		<string>{{0, 0}, {1792, 1120}}</string>
 		<key>topLeft</key>
-		<string>{418, 2155}</string>
+		<string>{263, 785}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
-	<string>2C0696B9-E428-466F-85FC-537D86EB99E8</string>
+	<string>C178CF23-0AA4-46E6-9BC5-4150536185B1</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>4</integer>
+	<integer>5</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
-	<real>615475717.14861405</real>
+	<real>620373589.47709596</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
 	<true/>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncRecordedVariables</key>
 	<dict>
 		<key>0</key>
@@ -1579,7 +1584,7 @@
 		</array>
 	</dict>
 	<key>NoSyncTipOfTheDayEligibilityBeganTime</key>
-	<real>615302917.14847398</real>
+	<real>620114282.02574301</real>
 	<key>OpenBookmark</key>
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
@@ -1626,11 +1631,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final_new.xml?shard=30</string>
+	<string>https://iterm2.com/appcasts/final_new.xml?shard=75</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-02T01:56:40Z</date>
+	<date>2020-09-01T02:21:04Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowNewOutputIndicator</key>
@@ -1656,6 +1661,6 @@
 	<key>WindowNumber</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.11</string>
+	<string>3.3.12</string>
 </dict>
 </plist>

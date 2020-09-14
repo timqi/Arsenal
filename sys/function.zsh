@@ -65,7 +65,7 @@ alias gd='git diff'
 alias gr='git rebase'
 alias gck='git checkout'
 alias tp='tmuxp'
-
+alias lg='lazygit'
 alias s='screen'
 alias sl='screen -ls'
 alias pgo='http_proxy=http://127.0.0.1:1087/ https_proxy=http://127.0.0.1:1087/ no_proxy=localhost,127.0.0.0/8,::1 go'

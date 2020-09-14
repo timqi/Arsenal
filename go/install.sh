@@ -1,8 +1,8 @@
-[[ ! -n $https_proxy ]] \
-    && echo "No proxy dectected, skip install go." \
-    && return
+#[[ ! -n $https_proxy ]] \
+#    && echo "No proxy dectected, skip install go." \
+#    && return
 
-VER="1.14.4"
+VER="1.15"
 
 if [[ `go version` == *$VER* ]]; then
    echo "go$VER already installed"
