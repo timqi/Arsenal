@@ -6,8 +6,6 @@ if has('multi_byte')
     set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
 endif
 
-
-" Basic
 syntax on
 set nu
 set nocompatible
@@ -56,16 +54,10 @@ au BufNewFile,BufRead,BufReadPost *.md setf markdown
 au BufNewFile,BufRead,BufReadPost *.ejs,*.njk setf html
 au BufNewFile,BufRead,BufReadPost *.ts setf javascript
 
-" autocmd BufReadPost *
-"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"      \   exe "normal! g`\"" |
-"      \ endif
-
 filetype on
 filetype plugin on
 filetype plugin indent on
 
-" Keymaps
 nnoremap s /
 inoremap <c-a> <esc>I
 inoremap <c-e> <esc>A
@@ -111,10 +103,9 @@ Plug 'tpope/vim-repeat'
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_project_root = ['.git', '.hg', '.svn']
 let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_ctags_extra_args = ['--kinds-PHP=cdfit']
-let g:gutentags_ctags_extra_args += ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-let g:gutentags_file_list_command = 'find . -name "*"'
+let g:gutentags_file_list_command = 'rg --no-ignore --files'
 let g:gutentags_ctags_exclude = ['*html', '*min.css', '*min.js', '*.json']
 let g:gutentags_auto_add_gtags_cscope = 0
 " let g:gutentags_file_list_command = 'rg --ignore-file=.rgignore --files'
@@ -169,57 +160,13 @@ let g:Lf_ShortcutF = '<c-p>'
 let g:Lf_RootMarkers = [".git", ".hg", ".svn"]
 let g:Lf_WindowHeight = 6
 let g:Lf_DefaultExternalTool = "rg"
-let g:Lf_RgConfig = ["--max-columns=200", ]
+" let g:Lf_RgConfig = ["--max-columns=200", ]
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_CommandMap = {'<c-k>': ['<c-p>'], '<c-j>': ['<c-n>']}
 let g:Lf_WildIgnore = {
     \ 'dir': ['.svn','.git','.hg'],
     \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
     \}
-
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-nmap g[ <Plug>(coc-diagnostic-prev)
-nmap g] <Plug>(coc-diagnostic-next)
-nnoremap fc :<C-u>call CocActionAsync('doQuickfix')<CR>
-nnoremap gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
-nnoremap ge :<C-u>call CocActionAsync('jumpDeclaration')<CR>
-nnoremap gi :<C-u>call CocActionAsync('jumpImplementation')<CR>
-nnoremap gt :<C-u>call CocActionAsync('jumpTypeDefinition')<CR>
-nnoremap gr :<C-u>call CocActionAsync('jumpReferences')<CR>
-nnoremap K  :<C-u>call CocAction('doHover')<CR>
-inoremap <silent><expr> <Nul> coc#refresh()
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>qf  <Plug>(coc-fix-current)
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-n> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-l>'
-let g:coc_snippet_prev = '<c-;>'
-imap <C-n> <Plug>(coc-snippets-expand-jump)
-
-if has("patch-8.1.1564") | set signcolumn=number | else | set signcolumn=yes | endif
-let g:coc_global_extensions = [
-    \ "coc-tsserver",
-    \ "coc-python",
-    \ "coc-word",
-    \ "coc-tag",
-    \ "coc-snippets",
-    \ "coc-go",
-    \ ]
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 call plug#end()
 
