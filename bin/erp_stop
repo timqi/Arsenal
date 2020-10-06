@@ -1,6 +1,0 @@
-#!/bin/bash
-
-brew services stop redis
-brew services stop mysql@5.6
-brew services stop nginx
-brew services stop php@7.1

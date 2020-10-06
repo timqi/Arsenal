@@ -74,7 +74,6 @@ cnoremap <c-d> <del>
 call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-vinegar'
-let g:netrw_banner = 0
 let g:netrw_list_hide= '\./,\.\./'
 
 Plug '907th/vim-auto-save'
@@ -108,7 +107,6 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 let g:gutentags_file_list_command = 'rg --no-ignore --files'
 let g:gutentags_ctags_exclude = ['*html', '*min.css', '*min.js', '*.json']
 let g:gutentags_auto_add_gtags_cscope = 0
-" let g:gutentags_file_list_command = 'rg --ignore-file=.rgignore --files'
 
 let s:vim_tags = expand('~/.config/tags')
 let g:gutentags_cache_dir = s:vim_tags
@@ -118,55 +116,20 @@ let g:gutentags_modules = []
 if executable('ctags') | let g:gutentags_modules += ['ctags'] | endif
 if executable('gtags-cscope') && executable('gtags') | let g:gutentags_modules += ['gtags_cscope'] | endif
 
-Plug 'sheerun/vim-polyglot'
-
 Plug 'vim-test/vim-test'
 
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
-Plug 'haya14busa/incsearch.vim'
-Plug 'easymotion/vim-easymotion'
 
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
-let g:fzf_layout = { 'down': '6' }
-" noremap <c-t> :BTags<cr>
-" noremap <c-p> :Files<cr>
-" noremap <c-e> :History<cr>
+let g:fzf_preview_window = ''
+noremap <c-t> :BTags<cr>
+noremap <c-p> :Files<cr>
+noremap <c-e> :History<cr>
 
 Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'left': [['mode', 'paste'], ['readonly', 'absolutepath', 'modified']],
-    \ },}
 
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-noremap <c-t> :LeaderfBufTag<CR>
-noremap <c-e> :LeaderfMruCwd<CR>
-noremap q: :<C-U>LeaderfHistoryCmd<CR>
-noremap q/ :<C-U>LeaderfHistorySearch<CR>
-cnoremap <C-r> <C-u>:LeaderfHistoryCmd<CR>
-noremap <leader>o :<C-U>LeaderfRgRecall<CR>
-noremap <leader>s :<C-U><C-R>=printf("Leaderf rg --match-path -e ")<CR>
-noremap <leader>w :<C-U><C-R>=printf("Leaderf rg --match-path -e %s ", expand("<cword>"))<CR>
-let s:lf_cache = expand('~/.config/LfCache')
-let g:Lf_CacheDirectory = s:lf_cache
-let g:Lf_ShowDevIcons = 0
-let g:Lf_ShortcutF = '<c-p>'
-let g:Lf_RootMarkers = [".git", ".hg", ".svn"]
-let g:Lf_WindowHeight = 6
-let g:Lf_DefaultExternalTool = "rg"
-" let g:Lf_RgConfig = ["--max-columns=200", ]
-let g:Lf_UseVersionControlTool = 0
-let g:Lf_CommandMap = {'<c-k>': ['<c-p>'], '<c-j>': ['<c-n>']}
-let g:Lf_WildIgnore = {
-    \ 'dir': ['.svn','.git','.hg'],
-    \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-    \}
+Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 
