@@ -1,0 +1,14 @@
+{
+    "go.goplsOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "deepCompletion": true,
+        "fuzzyMatching": true
+    },
+    "snippets.ultisnips.directories": [
+        "UltiSnips"
+    ],
+
+    "python.jediEnabled": false,
+    "python.linting.enabled": false
+}

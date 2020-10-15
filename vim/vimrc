@@ -8,6 +8,7 @@ endif
 
 syntax on
 set nu
+set mouse=a
 set nocompatible
 set bs=eol,start,indent
 set winaltkeys=no
@@ -116,20 +117,63 @@ let g:gutentags_modules = []
 if executable('ctags') | let g:gutentags_modules += ['ctags'] | endif
 if executable('gtags-cscope') && executable('gtags') | let g:gutentags_modules += ['gtags_cscope'] | endif
 
-Plug 'vim-test/vim-test'
-
 Plug 'tpope/vim-fugitive'
+
+
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+nnoremap g[ :<C-u>call CocActionAsync('diagnosticPrevious')<CR>
+nnoremap g] :<C-u>call CocActionAsync('diagnosticNext')<CR>
+nnoremap gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
+nnoremap gy :<C-u>call CocActionAsync('jumpTypeDefinition')<CR>
+nnoremap gi :<C-u>call CocActionAsync('jumpImplementation')<CR>
+nnoremap gr :<C-u>call CocActionAsync('jumpReferences')<CR>
+nnoremap K  :<C-u>call CocActionAsync('doHover')<CR>
+nnoremap rn :<C-u>call CocActionAsync('rename')<CR>
+nnoremap qf :<C-u>call CocActionAsync('doQuickfix')<CR>
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" coc-snippets
+" imap <C-l> <Plug>(coc-snippets-expand)
+" vmap <C-n> <Plug>(coc-snippets-select)
+" let g:coc_snippet_next = '<c-l>'
+" let g:coc_snippet_prev = '<c-;>'
+" imap <C-n> <Plug>(coc-snippets-expand-jump)
+
+if has("patch-8.1.1564") | set signcolumn=number | else | set signcolumn=yes | endif
+let g:coc_channel_timeout = 3
+let g:coc_global_extensions = [
+    \ "coc-tsserver",
+    \ "coc-python",
+    \ "coc-word",
+    \ "coc-tag",
+    \ "coc-go",
+    \ ]
+
+inoremap <silent><expr> <Nul> <C-r>=coc#_complete()<CR>
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
-let g:fzf_preview_window = ''
-noremap <c-t> :BTags<cr>
-noremap <c-p> :Files<cr>
-noremap <c-e> :History<cr>
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+nnoremap <c-t> :CocFzfList outline<cr>
+nnoremap <c-p> :Files<cr>
+nnoremap <c-e> :History<cr>
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []
 
-Plug 'morhetz/gruvbox'
-
-Plug 'lifepillar/vim-mucomplete'
+" Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 
@@ -141,6 +185,6 @@ set cursorline
 set noshowmode
 set novisualbell
 set background=dark
-colorscheme gruvbox
+colorscheme codedark
 hi Normal ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
