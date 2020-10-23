@@ -6,7 +6,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Solarized Dark Theme
 # export FZF_DEFAULT_OPTS='-m --color info:33,prompt:33,pointer:166,marker:166,spinner:33 --bind=ctrl-l:toggle-all --inline-info'
-export FZF_DEFAULT_OPTS='-m --color dark --bind=ctrl-l:toggle-all --inline-info --preview "cat {}"'
+export FZF_DEFAULT_OPTS='-m --color dark --bind=ctrl-l:toggle-all --inline-info'
 
 # Key bindings
 # source "$PLUGIN_SOURCE/shell/key-bindings.zsh"

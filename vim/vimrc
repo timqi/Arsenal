@@ -133,7 +133,8 @@ nnoremap K  :<C-u>call CocActionAsync('doHover')<CR>
 nnoremap rn :<C-u>call CocActionAsync('rename')<CR>
 nnoremap qf :<C-u>call CocActionAsync('doQuickfix')<CR>
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+inoremap <silent><expr> <Nul> coc#refresh()
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " coc-snippets
 " imap <C-l> <Plug>(coc-snippets-expand)
@@ -152,7 +153,6 @@ let g:coc_global_extensions = [
     \ "coc-go",
     \ ]
 
-inoremap <silent><expr> <Nul> <C-r>=coc#_complete()<CR>
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -163,17 +163,37 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-Plug '~/.fzf'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 nnoremap <c-t> :CocFzfList outline<cr>
 nnoremap <c-p> :Files<cr>
 nnoremap <c-e> :History<cr>
+nnoremap <leader>s :<C-U><C-R>=printf("Rg ")<CR>
+nnoremap <leader>w :<C-U><C-R>=printf("Rg %s", expand("<cword>"))<CR>
 let g:coc_fzf_preview = ''
 let g:coc_fzf_opts = []
 
-" Plug 'morhetz/gruvbox'
+function! s:cd_workspace(work_dir)
+    exe 'cd '.fnameescape(a:work_dir)
+    exe 'CocRestart'
+    exe 'e '.fnameescape(getcwd())
+    echom getcwd()
+endfunction
+command W call fzf#run(fzf#wrap({
+    \ "source": "cat ~/.zlua | sort --field-separator='|' --key=3 | awk -F'|' '{print $1}'", 
+    \ "options": "--prompt='Workspace:> ' -e",
+    \ "sink": function("s:cd_workspace")
+    \ }))
+
 Plug 'tomasiser/vim-code-dark'
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [['mode', 'paste'], ['readonly', 'absolutepath']],
+      \   'right': [['lineinfo'], ['percent'], ['filetype']]
+      \ },}
 
 call plug#end()
 
