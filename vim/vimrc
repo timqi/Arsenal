@@ -185,6 +185,7 @@ command W call fzf#run(fzf#wrap({
     \ "options": "--prompt='Workspace:> ' -e",
     \ "sink": function("s:cd_workspace")
     \ }))
+nnoremap <c-w> :W<cr>
 
 Plug 'tomasiser/vim-code-dark'
 Plug 'itchyny/lightline.vim'
