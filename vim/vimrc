@@ -173,6 +173,7 @@ nnoremap <leader>s :<C-U><C-R>=printf("Rg ")<CR>
 nnoremap <leader>w :<C-U><C-R>=printf("Rg %s", expand("<cword>"))<CR>
 let g:coc_fzf_preview = ''
 let g:coc_fzf_opts = []
+let g:fzf_layout = { 'down': '40%' }
 
 function! s:cd_workspace(work_dir)
     exe 'cd '.fnameescape(a:work_dir)
@@ -187,6 +188,9 @@ command W call fzf#run(fzf#wrap({
     \ }))
 nnoremap <c-w> :W<cr>
 
+Plug 'vim-test/vim-test'
+
+Plug 'solarnz/thrift.vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
