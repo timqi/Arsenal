@@ -76,6 +76,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-vinegar'
 let g:netrw_list_hide= '\./,\.\./'
+let g:netrw_localrmdir='rm -r'
 
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
@@ -119,65 +120,18 @@ if executable('gtags-cscope') && executable('gtags') | let g:gutentags_modules +
 
 Plug 'tpope/vim-fugitive'
 
-
-Plug 'honza/vim-snippets'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-nnoremap g[ :<C-u>call CocActionAsync('diagnosticPrevious')<CR>
-nnoremap g] :<C-u>call CocActionAsync('diagnosticNext')<CR>
-nnoremap gd :<C-u>call CocActionAsync('jumpDefinition')<CR>
-nnoremap gy :<C-u>call CocActionAsync('jumpTypeDefinition')<CR>
-nnoremap gi :<C-u>call CocActionAsync('jumpImplementation')<CR>
-nnoremap gr :<C-u>call CocActionAsync('jumpReferences')<CR>
-nnoremap K  :<C-u>call CocActionAsync('doHover')<CR>
-nnoremap rn :<C-u>call CocActionAsync('rename')<CR>
-nnoremap qf :<C-u>call CocActionAsync('doQuickfix')<CR>
-
-inoremap <silent><expr> <Nul> coc#refresh()
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-" coc-snippets
-" imap <C-l> <Plug>(coc-snippets-expand)
-" vmap <C-n> <Plug>(coc-snippets-select)
-" let g:coc_snippet_next = '<c-l>'
-" let g:coc_snippet_prev = '<c-;>'
-" imap <C-n> <Plug>(coc-snippets-expand-jump)
-
-if has("patch-8.1.1564") | set signcolumn=number | else | set signcolumn=yes | endif
-let g:coc_channel_timeout = 3
-let g:coc_global_extensions = [
-    \ "coc-tsserver",
-    \ "coc-python",
-    \ "coc-word",
-    \ "coc-tag",
-    \ "coc-go",
-    \ ]
-
-inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
-nnoremap <c-t> :CocFzfList outline<cr>
 nnoremap <c-p> :Files<cr>
 nnoremap <c-e> :History<cr>
 nnoremap <leader>s :<C-U><C-R>=printf("Rg ")<CR>
 nnoremap <leader>w :<C-U><C-R>=printf("Rg %s", expand("<cword>"))<CR>
-let g:coc_fzf_preview = ''
-let g:coc_fzf_opts = []
+nnoremap q: :<C-U><C-R>History:<CR>
+nnoremap q/ :<C-U><C-R>History/<CR>
 let g:fzf_layout = { 'down': '40%' }
 
 function! s:cd_workspace(work_dir)
     exe 'cd '.fnameescape(a:work_dir)
-    exe 'CocRestart'
     exe 'e '.fnameescape(getcwd())
     echom getcwd()
 endfunction
@@ -187,8 +141,6 @@ command W call fzf#run(fzf#wrap({
     \ "sink": function("s:cd_workspace")
     \ }))
 nnoremap <c-w> :W<cr>
-
-Plug 'vim-test/vim-test'
 
 Plug 'solarnz/thrift.vim'
 Plug 'tomasiser/vim-code-dark'
