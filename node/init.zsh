@@ -2,7 +2,7 @@ function nn() {
     if [[ -n $2 ]]; then
         VER="$2"
     else
-        VER="12.14.1"
+        VER="14.15.3"
     fi
     NODETMP="$ARSENALDIR/tmp/node"
     NODEROOT="$ARSENALDIR/node/source"
