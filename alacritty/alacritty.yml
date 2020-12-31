@@ -6,7 +6,7 @@ window:
   startup_mode: Maximized
 
 font:
-  size: 16
+  size: 18
   normal:
     family: Fira Code
     style: Light
