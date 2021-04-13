@@ -2,7 +2,7 @@
 #    && echo "No proxy dectected, skip install go." \
 #    && return
 
-VER="1.15"
+VER="1.16.3"
 
 if [[ `go version` == *$VER* ]]; then
    echo "go$VER already installed"
@@ -11,7 +11,11 @@ fi
 
 GOTMP=$ARSENALDIR/tmp/go && mkdir -p $GOTMP
 if [[ `uname -a` == *Darwin* ]]; then
-    FILENAME="go$VER.darwin-amd64.tar.gz"
+    if [[ `uname -a` == *arm64* ]]; then
+        FILENAME="go$VER.darwin-arm64.tar.gz"
+    else
+        FILENAME="go$VER.darwin-amd64.tar.gz"
+    fi
 else
     FILENAME="go$VER.linux-amd64.tar.gz"
 fi
