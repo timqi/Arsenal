@@ -29,8 +29,7 @@ eval "$(lua $ARSENALDIR/z/source/z.lua --init zsh enhanced once)"
 
 # init PATH & platform profile
 if [[ $PATH != "*$ARSENALDIR*" ]]; then
-    # export PATH="$HOME/.pyenv/bin:$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/bin/node:$HOME/go/bin:$PATH"
-    export PATH="$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/bin/node:$HOME/go/bin:$ARSENALDIR/python/source/bin:$HOME/bin:$PATH"
+    export PATH="$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/bin/node:$HOME/go/bin:$HOME/.pyenv/bin:$PATH"
 fi
 
 # pyenv pyenv-virtualenv
