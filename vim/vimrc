@@ -47,6 +47,7 @@ set expandtab
 au FileType go setlocal noexpandtab
 au FileType css,less,javascript,html* setlocal shiftwidth=2 tabstop=2 softtabstop=2
 au FileType python,php,vim setlocal expandtab shiftwidth=4 softtabstop=4
+au BufRead,BufNewFile *.md setlocal wrap
 
 autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
@@ -155,8 +156,8 @@ let g:lightline = {
       \ },}
 
 Plug 'easymotion/vim-easymotion'
-
 Plug 'honza/vim-snippets'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 nnoremap g[ :<C-u>call CocActionAsync('diagnosticPrevious')<CR>
@@ -176,7 +177,7 @@ if has("patch-8.1.1564") | set signcolumn=number | else | set signcolumn=yes | e
 let g:coc_channel_timeout = 3
 let g:coc_global_extensions = [
     \ "coc-go",
-    \ "coc-python",
+    \ "coc-pyright",
     \ "coc-tag",
     \ ]
 
@@ -194,7 +195,6 @@ Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 nnoremap <c-t> :CocFzfList outline<cr>
 let g:coc_fzf_preview = ''
 let g:coc_fzf_opts = []
-
 
 call plug#end()
 
