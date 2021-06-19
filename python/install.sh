@@ -19,4 +19,7 @@ else
     git clone --depth=1 $SOURCE_URL $VIRTUALENV_DIR
 fi
 
+cd $PYENV_DIR
+src/configure && make -C src
+
 ln -sfFv $PYENV_DIR ~/.pyenv
