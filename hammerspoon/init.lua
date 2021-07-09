@@ -20,10 +20,12 @@ hs.alert.show("Remaped", config.alert_style, hs.screen.mainScreen(), 1)
 f13 = {
     key = "f13",
     {key = "s", app = "Slack"},
+    {key = "d", app = "DingTalk"},
+    {key = "a", app = "Alacritty"},
     {key = "t", app = "iTerm", apps = {"Terminal"}},
-    {key = "e", app = "Eudic"},
-    {key = "g", app = "Google Chrome"},
-    {key = "c", app = "Visual Studio Code"},
+    {key = "e", app = "Eudb_en"},
+    {key = "c", app = "Google Chrome"},
+    {key = "v", app = "Visual Studio Code"},
     {key = "w", app = "WeChat"},
     {key = "z", app = "zoom.us"},
     {key = "n", app = "Notion"}
