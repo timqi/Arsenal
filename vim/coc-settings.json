@@ -1,4 +1,5 @@
 {
+    "coc.preferences.rootPatterns": [".git", ".root"],
     "go.goplsOptions": {
         "usePlaceholders": true,
         "completeUnimported": true,
@@ -6,8 +7,5 @@
     },
     "snippets.ultisnips.directories": [
         "UltiSnips"
-    ],
-
-    "python.jediEnabled": false,
-    "python.linting.enabled": false
+    ]
 }

@@ -27,17 +27,14 @@ export _ZL_ECHO=1
 eval "$(lua $ARSENALDIR/z/source/z.lua --init zsh enhanced once)"
 # . $ARSENALDIR/z/init.zsh
 
+# conda
+. $ARSENALDIR/conda/miniconda/etc/profile.d/conda.sh
+
 # init PATH & platform profile
 if [[ $PATH != "*$ARSENALDIR*" ]]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/bin/node:$HOME/go/bin:$PYENV_ROOT/bin:$PATH"
+    export PATH="$ARSENALDIR/bin:$ARSENALDIR/bin/self:$ARSENALDIR/conda/miniconda/bin:$ARSENALDIR/bin/node:$HOME/go/bin:$PATH"
+    export PYTHONPATH="."
 fi
-    
-# pyenv pyenv-virtualenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 
 # Auto source ~/.platformrc
 [[ -f "$HOME/.platformrc" ]] && . "$HOME/.platformrc"
