@@ -1,0 +1,19 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = qiqi
+	email = i@timqi.com
+
+[alias]
+    a = add
+    b = branch
+    ck = checkout
+	st = status -sb
+    p = pull
+    ll = log --online
+	last = log -1 HEAD --stat
+    cm = commit -m
+    d = diff
+    dv = difftool -t vimdiff -y
+    gl = config --global -l
+    se = !git rev-list --all | xargs git grep -F

@@ -13,7 +13,7 @@ export https_proxy=""
 function proxy(){
     case $1 in
         set)
-            [[ ! -n $2 ]] && all_proxy="socks5://127.0.0.1:7891"
+            [[ ! -n $2 ]] && all_proxy="socks5://127.0.0.1:7890"
             http_proxy=$2
             [[ ! -n $2 ]] && http_proxy="http://127.0.0.1:7890"
             https_proxy=$2
@@ -56,12 +56,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export TERM="xterm-256color"
 
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit -m'
-alias gp='git pull'
-alias gb='git branch'
-alias gd='git diff'
-alias gck='git checkout'
-alias lg='lazygit'
-alias pgo='http_proxy=http://127.0.0.1:1087/ https_proxy=http://127.0.0.1:1087/ no_proxy=localhost,127.0.0.0/8,::1 go'
+alias ls='ls --group-directories-first --color=auto'
+alias l='ls -lhA'
+alias grep='grep --color=auto'
