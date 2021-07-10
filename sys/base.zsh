@@ -34,7 +34,7 @@ autoload -U compinit
 compinit -C
 zmodload zsh/complist
 zstyle ':completion:*' menu yes select
-bindkey -M menuselect '?' history-incremental-search-forward
+bindkey -M menuselect '/' history-incremental-search-forward
 
 
 autoload -U colors && colors

@@ -6,7 +6,6 @@
     a = add
     b = branch
     c = commit -m
-    se = !git rev-list --all | xargs git grep -F
     d = diff
     dv = difftool -t vimdiff -y
     p = pull
@@ -15,7 +14,6 @@
 	st = status -sb
     cl = config --global -l
 
-    ll = log --online
 	last = log -1 HEAD --stat
 
     sh = stash
