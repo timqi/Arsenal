@@ -9,20 +9,20 @@ NEW_VER=`curl -s ${TAG_URL} --connect-timeout 10| grep 'tag_name' | cut -d\" -f4
 if [[ $CURR_VER == $NEW_VER ]]; then
 	echo "zoxide is already the newest."
 else
-	echo "zoxide will install: v$NEW_VER ..."
+	echo "zoxide will install: $NEW_VER ..."
 	ARCH="unknown-linux-musl"
 	if [[ `uname -a` == *Darwin* ]]; then
 		ARCH="apple-darwin"
 	fi
-	DOWNLOAD_URL="https://github.com/BurntSushi/ripgrep/releases/download/$NEW_VER/ripgrep-$NEW_VER-x86_64-$ARCH.tar.gz"
+	DOWNLOAD_URL="https://github.com/ajeetdsouza/zoxide/releases/download/$NEW_VER/zoxide-x86_64-$ARCH.tar.gz"
 
-	TMP_DIR="$ARSENALTEMPDIR/ripgrep"
+	TMP_DIR="$ARSENALTEMPDIR/zoxide"
 	mkdir -p $TMP_DIR
-	TAR_FILE="$TMP_DIR/ripgrep.tar.gz"
+	TAR_FILE="$TMP_DIR/zoxide.tar.gz"
 
 	curl -L -H "Cache-Control: no-cache" -o $TAR_FILE $DOWNLOAD_URL
 	tar -zxvf $TAR_FILE -C $TMP_DIR
-	cp $TMP_DIR/*/rg $ARSENAL_SELF_BIN_DIR
+	cp $TMP_DIR/*/zoxide $ARSENAL_SELF_BIN_DIR
 
-	logv "ripgrep $NEW_VER installed."
+	logv "zoxide $NEW_VER installed."
 fi

@@ -71,11 +71,8 @@ zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.so|*.pyc'
 zstyle ':completion:*:*sh:*:' tag-order files
 
 autoload -U colors && colors
-precmd() {
-    __git_branch="`git rev-parse --abbrev-ref HEAD 2>/dev/null`"
-    [[ -n $__git_branch ]] && __git_branch=" ${__git_branch}"
-}
+export LS_COLORS="$LS_COLORS:ow=34;4"
+
 setopt PROMPT_SUBST
 # PROMPT='%K{238}%(?:%F{112}:%F{9})${LOCAL_MACHINE_NAME:-> }%B%F{4}%c%b%F{244}${__git_branch}%f %{$reset_color%} '
 PROMPT=$'%(?:%F{112}:%F{9})${LOCAL_MACHINE_NAME:->} %B%F{4}%c%b%F{244}${__git_branch}%f%{$reset_color%} '
-export LS_COLORS="$LS_COLORS:ow=34;4"
