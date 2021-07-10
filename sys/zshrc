@@ -10,8 +10,8 @@ export ARSENALDIR="$HOME/Arsenal"
 # node
 . $ARSENALDIR/node/init.zsh
 
-# go
-. $ARSENALDIR/go/init.zsh
+# zoxide
+. $ARSENALDIR/zoxide/init.zsh
 
 # zsh-autosuggestions
 . $ARSENALDIR/zsh-autosuggestions/source/zsh-autosuggestions.zsh
@@ -21,11 +21,6 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=1000
 
 # zsh-syntax-highlighting.zsh
 . $ARSENALDIR/zsh-syntax-highlighting/source/zsh-syntax-highlighting.zsh
-
-# z.lua
-export _ZL_ECHO=1
-eval "$(lua $ARSENALDIR/z/source/z.lua --init zsh enhanced once)"
-# . $ARSENALDIR/z/init.zsh
 
 # conda
 . $ARSENALDIR/conda/miniconda/etc/profile.d/conda.sh
@@ -40,9 +35,20 @@ fi
 [[ -f "$HOME/.platformrc" ]] && . "$HOME/.platformrc"
 
 # Auto open a default session using tmux in Linux environment
-# if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]] &&\
-	# command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    # # Set tab title to hostname of current
+if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]] &&\
+    # Set tab title to hostname of current
     echo -ne "\033]0;`hostname`\007"
-    # tmux attach -t default &> /dev/null || tmux new -s default
-# fi
+
+    # attach or new tmux session
+	command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    default_tmux_session="0"
+    tmux attach -t $default_tmux_session &> /dev/null || tmux new -s $default_tmux_session
+fi
+
+precmd() {
+    if [[ -f .conda-version ]]; then conda activate `cat .conda-version`; else conda deactivate; fi
+}
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
