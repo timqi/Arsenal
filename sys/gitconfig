@@ -15,5 +15,5 @@
     cm = commit -m
     d = diff
     dv = difftool -t vimdiff -y
-    gl = config --global -l
+    cl = config --global -l
     se = !git rev-list --all | xargs git grep -F

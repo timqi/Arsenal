@@ -59,3 +59,4 @@ export TERM="xterm-256color"
 alias ls='ls --group-directories-first --color=auto'
 alias l='ls -lhA'
 alias grep='grep --color=auto'
+alias g='git'

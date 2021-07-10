@@ -21,3 +21,4 @@ fi
 
 ## For auto add
 alias zdd='zoxide add `pwd`'
+alias zl='zoxide query -l -s'
