@@ -56,7 +56,11 @@ export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export TERM="xterm-256color"
 
-alias ls='ls --group-directories-first --color=auto'
+if (( ${+commands[dircolors]} )); then
+  alias ls='ls --group-directories-first --color=auto'
+else
+  alias ls='ls -G'
+fi
 alias l='ls -lhA'
 alias grep='grep --color=auto'
 alias g='git'

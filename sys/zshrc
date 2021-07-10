@@ -49,7 +49,7 @@ if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]]; then
         (tmux attach -t $default_tmux_session || tmux new-session -s $default_tmux_session)
 fi
 
-precmd() {
+chpwd() {
     if [[ -f .conda-version ]]; then conda activate `cat .conda-version`; else conda deactivate; fi
     if [[ -e ".git" ]]; then
         __git_branch="`git rev-parse --abbrev-ref HEAD 2>/dev/null`"
