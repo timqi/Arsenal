@@ -4,8 +4,9 @@ eval "$(zoxide init zsh --cmd z --hook none)"
 _zoxide_zsh_tab_completion() {
     (( $+compstate )) && compstate[insert]=menu
     local keyword="${words:2}"
+    [[ -z $keyword ]] && _files -/ && return
+    
     local completions=(${(@f)"$(zoxide query -l "$keyword")"})
-
     if [[ ${#completions[@]} == 0 ]]; then
         _files -/
     else
