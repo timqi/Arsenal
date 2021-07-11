@@ -140,7 +140,7 @@ function! s:cd_workspace(work_dir)
     echom getcwd()
 endfunction
 command W call fzf#run(fzf#wrap({
-    \ "source": "cat ~/.zlua | sort --field-separator='|' --key=3 | awk -F'|' '{print $1}'", 
+    \ "source": "zoxide query -l", 
     \ "options": "--prompt='Workspace:> ' -e",
     \ "sink": function("s:cd_workspace")
     \ }))

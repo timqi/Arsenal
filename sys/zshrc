@@ -50,7 +50,14 @@ if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]]; then
 fi
 
 chpwd() {
-    if [[ -f .conda-version ]]; then conda activate `cat .conda-version`; else conda deactivate; fi
+    if [[ -f .conda-version ]]; then
+        local env=`cat .conda-version`
+        [[ $CONDA_DEFAULT_ENV != $env ]] && conda activate $env
+    else
+        [[ -n $CONDA_DEFAULT_ENV ]] && [[ $CONDA_DEFAULT_ENV != "base" ]] &&\
+            conda deactivate
+    fi
+
     if [[ -e ".git" ]]; then
         __git_branch="`git rev-parse --abbrev-ref HEAD 2>/dev/null`"
         [[ -n $__git_branch ]] && __git_branch=" ${__git_branch}"
