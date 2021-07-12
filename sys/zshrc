@@ -38,17 +38,6 @@ fpath=($ARSENALDIR/zsh-autosuggestions/source/src $fpath)
 [[ -f "$HOME/.platformrc" ]] && . "$HOME/.platformrc"
 
 
-# Auto open a default session using tmux in Linux environment
-if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]]; then
-    # Set tab title to hostname of current
-    echo -ne "\033]0;`hostname`\007"
-
-    # attach or new tmux session
-    local default_tmux_session="0"
-	command -v tmux &> /dev/null && [ -z "$TMUX" ] &&\
-        (tmux attach -t $default_tmux_session || tmux new-session -s $default_tmux_session)
-fi
-
 chpwd() {
     if [[ -f .conda-version ]]; then
         local env=`cat .conda-version`
@@ -63,6 +52,19 @@ chpwd() {
         [[ -n $__git_branch ]] && __git_branch=" ${__git_branch}"
 
         zdd
+    else
+        __git_branch=""
     fi
 }
 
+
+# Auto open a default session using tmux in Linux environment
+if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]]; then
+    # Set tab title to hostname of current
+    echo -ne "\033]0;`hostname`\007"
+
+    # attach or new tmux session
+    local default_tmux_session="0"
+	command -v tmux &> /dev/null && [ -z "$TMUX" ] &&\
+        (tmux attach -t $default_tmux_session || tmux new-session -s $default_tmux_session)
+fi
