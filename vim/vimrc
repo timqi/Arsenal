@@ -9,7 +9,6 @@ endif
 syntax on
 set nu
 set mouse=
-
 set nocompatible
 set bs=eol,start,indent
 set winaltkeys=no

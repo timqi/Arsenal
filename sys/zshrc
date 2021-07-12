@@ -38,26 +38,6 @@ fpath=($ARSENALDIR/zsh-autosuggestions/source/src $fpath)
 [[ -f "$HOME/.platformrc" ]] && . "$HOME/.platformrc"
 
 
-chpwd() {
-    if [[ -f .conda-version ]]; then
-        local env=`cat .conda-version`
-        [[ $CONDA_DEFAULT_ENV != $env ]] && conda activate $env
-    else
-        [[ -n $CONDA_DEFAULT_ENV ]] && [[ $CONDA_DEFAULT_ENV != "base" ]] &&\
-            conda deactivate
-    fi
-
-    if [[ -e ".git" ]]; then
-        __git_branch="`git rev-parse --abbrev-ref HEAD 2>/dev/null`"
-        [[ -n $__git_branch ]] && __git_branch=" ${__git_branch}"
-
-        zdd
-    else
-        __git_branch=""
-    fi
-}
-
-
 # Auto open a default session using tmux in Linux environment
 if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]]; then
     # Set tab title to hostname of current
