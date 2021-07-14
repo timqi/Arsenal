@@ -1,9 +1,3 @@
-# setopt AUTO_CD
-# setopt AUTO_PUSHD
-# setopt PUSHD_IGNORE_DUPS
-# setopt PUSHD_SILENT
-# setopt PUSHD_TO_HOME
-
 setopt EXTENDED_GLOB
 setopt MULTIOS
 setopt NO_CLOBBER
@@ -28,9 +22,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 
-
 bindkey -e
-autoload -U compinit
+autoload -Uz compinit
 compinit -C
 zmodload zsh/complist
 zstyle ':completion:*' menu yes select
@@ -46,5 +39,5 @@ precmd() {
 }
 
 setopt PROMPT_SUBST
-#PROMPT='%K{238}%(?:%F{112}:%F{9})${LOCAL_MACHINE_NAME:-> }%B%F{4}%c%b%F{244}${__git_branch}%f %{$reset_color%} '
+LOCAL_MACHINE_NAME=`hostname`
 PROMPT=$'%(?:%F{112}:%F{9})${LOCAL_MACHINE_NAME:->} %B%F{4}%c%b%F{244}${__git_branch}%f%{$reset_color%} '

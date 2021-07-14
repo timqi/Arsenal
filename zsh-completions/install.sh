@@ -7,4 +7,5 @@ else
 fi
 
 fpath=($PLUGIN_SOURCE_DIR/src $fpath)
-rm -f ~/.zcompdump; compinit
+rm -f ~/.zcompdump
+compinit

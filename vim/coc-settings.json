@@ -4,8 +4,5 @@
         "usePlaceholders": true,
         "completeUnimported": true,
         "deepCompletion": true
-    },
-    "snippets.ultisnips.directories": [
-        "UltiSnips"
-    ]
+    }
 }

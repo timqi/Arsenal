@@ -1,5 +1,5 @@
 #!/bin/bash
-# install curl gcc
+# install git curl gcc
 
 function logv() {
     printf "\x1B[32m$1\x1B[0m\n"
@@ -23,24 +23,30 @@ mkdir -p $ARSENAL_SELF_BIN_DIR
 mkdir -p $ARSENALTEMPDIR
 logv "HOME: $HOME, TMP: $ARSENALTEMPDIR, ARSENAL: $ARSENALDIR\n"
 
-if [[ -n $1 ]] && [[ ! -d $ARSENALDIR/$1 ]]; then
-    echo "$1 module doesn't exist"
-elif [[ -n $1 ]]; then
-    extra=$ARSENALDIR/$1
+do_module_install() {
+    cd $ARSENALDIR
+    extra=$1
     INSTALL_SCRIPT="$extra/install.sh"
     PLUGIN_SOURCE_DIR="$extra/source"
     PLUGIN_DIR="$extra"
-    [[ -f $INSTALL_SCRIPT ]] \
-        && logv "Install plugin $extra ..." \
-    && . $INSTALL_SCRIPT
+    [[ -f $INSTALL_SCRIPT ]] && logv "Install plugin $extra ..." && . $INSTALL_SCRIPT
+}
+
+if [[ -n $1 ]] && [[ ! -d $ARSENALDIR/$1 ]]; then
+    if [[ "$1" == "base" ]]; then
+        modules=("fzf" "rg" "sys" "vim" "zoxide")
+        modules+=("zsh-autosuggestions" "zsh-completions" "zsh-syntax-highlighting")
+        for extra in ${modules[@]}; do
+            do_module_install "$ARSENALDIR/$extra"
+        done
+    else
+        echo "$1 is not [base] and module doesn't exist"
+    fi
+elif [[ -n $1 ]]; then
+    do_module_install "$ARSENALDIR/$1"
 else
     for extra in $ARSENALDIR/*; do
-        INSTALL_SCRIPT="$extra/install.sh"
-        PLUGIN_SOURCE_DIR="$extra/source"
-        PLUGIN_DIR="$extra"
-        [[ -f $INSTALL_SCRIPT ]] \
-            && logv "Install plugin $extra ..." \
-        && . $INSTALL_SCRIPT
+        do_module_install $extra
     done
 fi
 
