@@ -27,6 +27,7 @@ autoload -Uz compinit
 compinit -C
 zmodload zsh/complist
 zstyle ':completion:*' menu yes select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 bindkey -M menuselect '/' history-incremental-search-forward
 
 

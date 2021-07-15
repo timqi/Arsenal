@@ -1,8 +1,0 @@
-{
-    "coc.preferences.rootPatterns": [".git", ".root"],
-    "go.goplsOptions": {
-        "usePlaceholders": true,
-        "completeUnimported": true,
-        "deepCompletion": true
-    }
-}

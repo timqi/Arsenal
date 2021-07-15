@@ -20,7 +20,8 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=1000
 . $ARSENALDIR/zsh-syntax-highlighting/source/zsh-syntax-highlighting.zsh
 
 # conda
-. $ARSENALDIR/conda/miniconda/etc/profile.d/conda.sh
+CONDA_INIT_SCRIPT="$ARSENALDIR/conda/miniconda/etc/profile.d/conda.sh" 
+[[ -f "$CONDA_INIT_SCRIPT" ]] && . $CONDA_INIT_SCRIPT
 
 # init PATH & platform profile
 if [[ $PATH != "*$ARSENALDIR*" ]]; then
