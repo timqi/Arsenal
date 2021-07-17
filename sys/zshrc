@@ -45,7 +45,7 @@ if [[ $(OSTYPE) != "macos" ]] && [[ $(OSTYPE) != "win" ]]; then
     echo -ne "\033]0;`hostname`\007"
 
     # attach or new tmux session
-    local default_tmux_session="0"
-	command -v tmux &> /dev/null && [ -z "$TMUX" ] &&\
-        (tmux attach -t $default_tmux_session || tmux new-session -s $default_tmux_session)
+    #local default_tmux_session="0"
+	#command -v tmux &> /dev/null && [ -z "$TMUX" ] &&\
+    #    (tmux attach -t $default_tmux_session || tmux new-session -s $default_tmux_session)
 fi

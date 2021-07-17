@@ -34,7 +34,7 @@ do_module_install() {
 
 if [[ -n $1 ]] && [[ ! -d $ARSENALDIR/$1 ]]; then
     if [[ "$1" == "base" ]]; then
-        modules=("fzf" "rg" "sys" "vim" "zoxide")
+        modules=("sys" "fzf" "vim" "zoxide" "rg")
         modules+=("zsh-autosuggestions" "zsh-completions" "zsh-syntax-highlighting")
         for extra in ${modules[@]}; do
             do_module_install "$ARSENALDIR/$extra"

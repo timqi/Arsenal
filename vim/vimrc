@@ -1,69 +1,15 @@
 if get(s:, 'loaded', 0) != 0 | finish | else | let s:loaded = 1 | endif
+set encoding=utf-8 fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
+
 let mapleader = "\<space>"
-if has('multi_byte')
-    set encoding=utf-8
-    set fileencoding=utf-8
-    set fileencodings=utf-8,ucs-bom,gbk,gb18030,big5,euc-jp,latin1
-endif
-
 syntax on
-set nu
-set mouse=
+
 set nocompatible
-set bs=eol,start,indent
-set winaltkeys=no
-set ttimeout
-set ttimeoutlen=50
-set ruler
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-set display=lastline
-set wildmenu
-set lazyredraw
-set completeopt=menuone,noselect
-set noswapfile
-set history=1000
-set formatoptions+=m
-set formatoptions+=B
-set ffs=unix,dos,mac
-set errorformat+=[%f:%l]\ ->\ %m,[%f:%l]:%m
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
-set tags=./.tags;,.tags
+set hlsearch incsearch smartcase
 set wildignore+=.bak,*.swp,*.class,*.pyc,*DS_Store*,*.swp,*/.Trash/*
-set omnifunc=syntaxcomplete#Complete
-set nobackup
-set nowritebackup
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set smarttab
-set cindent
-set autoindent
-set smartindent
-set expandtab
-
-au FileType go setlocal noexpandtab
-au FileType css,less,javascript,html* setlocal shiftwidth=2 tabstop=2 softtabstop=2
-au FileType python,php,vim setlocal expandtab shiftwidth=4 softtabstop=4
-
-au BufNewFile,BufRead,BufReadPost *.md setf markdown
-au BufNewFile,BufRead,BufReadPost *.ejs,*.njk setf html
-au BufNewFile,BufRead,BufReadPost *.ts setf javascript
-
-nnoremap s /
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
-inoremap <c-d> <del>
-inoremap <c-f> <right>
-inoremap <c-b> <left>
-cnoremap <c-b> <left>
-cnoremap <c-f> <right>
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-cnoremap <c-d> <del>
-nmap \ <leader><leader>
+set noswapfile nobackup nowritebackup
+set cindent autoindent smartindent expandtab smarttab 
+set ts=4 sw=4 sts=4
 
 filetype on
 filetype plugin on
@@ -71,51 +17,12 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'tpope/vim-vinegar'
-let g:netrw_list_hide= '\./,\.\./'
-let g:netrw_localrmdir='rm -r'
-
-Plug '907th/vim-auto-save'
-let g:auto_save = 1
-
-Plug 'tpope/vim-commentary'
-
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'alvan/vim-closetag'
-let g:closetag_filenames = "*.html,*.xhtml,*.njk,*.jsx,*.js,*.php"
-let g:closetag_emptyTags_caseSensitive = 1
-
-Plug 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 1
-
 Plug 'sbdchd/neoformat'
-nnoremap = :Neoformat<CR>
-let g:neoformat_run_all_formatters = 1
-let g:neoformat_basic_format_retab = 1
-let g:neoformat_basic_format_trim = 1
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-
-Plug 'ludovicchabant/vim-gutentags'
-let g:gutentags_project_root = ['.git', '.hg', '.svn']
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-let g:gutentags_file_list_command = 'rg --no-ignore --files'
-let g:gutentags_ctags_exclude = ['*html', '*min.css', '*min.js', '*.json']
-let g:gutentags_auto_add_gtags_cscope = 0
-
-let s:vim_tags = expand('~/.config/tags')
-let g:gutentags_cache_dir = s:vim_tags
-if !isdirectory(s:vim_tags) | silent! call mkdir(s:vim_tags, 'p') | endif
-" 同时开启 ctags 和 gtags 支持：
-let g:gutentags_modules = []
-if executable('ctags') | let g:gutentags_modules += ['ctags'] | endif
-if executable('gtags-cscope') && executable('gtags') | let g:gutentags_modules += ['gtags_cscope'] | endif
-
 Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
+Plug 'tomasiser/vim-code-dark'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -123,33 +30,10 @@ nnoremap <c-p> :Files<cr>
 nnoremap <c-e> :History<cr>
 nnoremap <leader>s :<C-U><C-R>=printf("Rg ")<CR>
 nnoremap <leader>w :<C-U><C-R>=printf("Rg %s", expand("<cword>"))<CR>
-nnoremap q: :<C-U><C-R>History:<CR>
-nnoremap q/ :<C-U><C-R>History/<CR>
-let g:fzf_layout = { 'down': '40%' }
+let g:fzf_layout = { 'window': 'enew' }
 
-Plug 'tomasiser/vim-code-dark'
-Plug 'itchyny/lightline.vim'
-" let g:lightline = {
-"       \ 'colorscheme': 'wombat',
-"       \ 'active': {
-"       \   'left': [['mode', 'paste'], ['readonly', 'absolutepath']],
-"       \   'right': [['lineinfo'], ['percent'], ['filetype']]
-"       \ },}
-
-Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
-
-" Styles
-set laststatus=1
-set t_Co=256
-set novb t_vb=
-set cursorline
-set noshowmode
-set novisualbell
-set background=dark
 colorscheme codedark
 hi Normal ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-

@@ -21,7 +21,7 @@ f13 = {
     key = "f13",
     {key = "j", app = "iTerm"},
     -- {key = "c", app = "Google Chrome"},
-    {key = "c", app = "Microsoft Edge"},
+    {key = "c", app = "Google Chrome"},
     {key = "s", app = "Slack"},
     {key = "d", app = "DingTalk"},
     {key = "e", app = "Eudb_en"},

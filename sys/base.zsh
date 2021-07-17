@@ -41,4 +41,4 @@ precmd() {
 
 setopt PROMPT_SUBST
 LOCAL_MACHINE_NAME=`hostname`
-PROMPT=$'%(?:%F{112}:%F{9})${LOCAL_MACHINE_NAME:->} %B%F{4}%c%b%F{244}${__git_branch}%f%{$reset_color%} '
+PROMPT=$'%(?:%F{112}:%F{9})${LOCAL_MACHINE_NAME:->} %B%F{4}%c%b%F{244}${__git_branch}%f%{$reset_color%} %# '
