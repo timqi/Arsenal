@@ -31,6 +31,7 @@ fi
 
 # zoxide
 . $ARSENALDIR/zoxide/init.zsh
+chpwd() { [[ -d ".git" ]] && zoxide add `pwd` }
 
 # zsh-completions
 fpath=($ARSENALDIR/zsh-autosuggestions/source/src $fpath)
