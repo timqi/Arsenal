@@ -19,8 +19,7 @@ hs.alert.show("Remaped", config.alert_style, hs.screen.mainScreen(), 1)
 
 f13 = {
     key = "f13",
-    {key = "j", app = "iTerm"},
-    -- {key = "c", app = "Google Chrome"},
+    {key = "j", app = "Alacritty"},
     {key = "c", app = "Google Chrome"},
     {key = "s", app = "Slack"},
     {key = "d", app = "DingTalk"},

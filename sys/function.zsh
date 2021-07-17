@@ -61,6 +61,8 @@ if (( ${+commands[dircolors]} )); then
 else
   alias ls='ls -G'
 fi
+
 alias l='ls -lhA'
 alias grep='grep --color=auto'
 alias g='git'
+alias s='screen'

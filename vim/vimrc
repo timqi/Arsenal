@@ -6,6 +6,7 @@ syntax on
 
 set nocompatible
 set hlsearch incsearch smartcase
+set backspace=indent,eol,start
 set wildignore+=.bak,*.swp,*.class,*.pyc,*DS_Store*,*.swp,*/.Trash/*
 set noswapfile nobackup nowritebackup
 set cindent autoindent smartindent expandtab smarttab 

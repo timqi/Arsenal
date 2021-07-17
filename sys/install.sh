@@ -6,3 +6,6 @@ ln -sfFv $PLUGIN_DIR/tmux.conf $TMUX_CONFIG
 
 GIT_CONFIG=$HOME/.gitconfig
 ln -sfFv "$PLUGIN_DIR/gitconfig" $GIT_CONFIG
+
+ALACRITTY_CONFIG=$HOME/.alacritty.yml
+ln -sfFv "$PLUGIN_DIR/alacritty.yml" $ALACRITTY_CONFIG
